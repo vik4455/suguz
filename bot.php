@@ -38,6 +38,14 @@ if (!is_null($events['events'])) {
                 fwrite($file, $response->getRawBody());
                 $respMessage='Hello, your video ID is '.$messageID;
                 break;
+            case 'audio':
+                $messageID = $event['message']['id'];
+                $fileID = $event['message']['id'];
+                $response = $bot->getMessageContent($fileID); 
+                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
+                fwrite($file, $response->getRawBody());
+                $respMessage='Hello, your audio ID is '.$messageID;
+                break;
             default:
                 $respMessage='What is you sent ?'; 
                 break;
