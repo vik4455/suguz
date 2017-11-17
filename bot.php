@@ -18,12 +18,15 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
         $replyToken = $event['replyToken']; 
 		switch($event['message']['type']) {
+            case 'text': 
+                $respMessage='Hello, your message is '.$event['message']['text'];
+                break;
             case 'image':
                 $messageID = $event['message']['id']; 
                 $respMessage='Hello, your image ID is '.$messageID;
                 break; 
             default:
-                $respMessage='Please send image only'; 
+                $respMessage='What is you sent ?'; 
                 break;
         }
         
