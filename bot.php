@@ -1,47 +1,62 @@
 <?php
-$access_token = '9Isri8d/LYfcip6hCv4kmAUHR6ST8tTwUYC69hCFEb0wG7TNHEhqqVSrW+KV9rhM5c6xseoifi5zV53qv9L2IBEY8w9Fsn4yv6pLGLsvEIdfGOJrmG2WYB6B7c2X8/McMCSul3HXWnWTqVbK02fWzQdB04t89/1O/w1cDnyilFU=';
+require_once('./vendor/autoload.php');
+// Namespace
+use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use \LINE\LINEBot;
+use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use \LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 
-// Get POST body content
+$channel_token = '9Isri8d/LYfcip6hCv4kmAUHR6ST8tTwUYC69hCFEb0wG7TNHEhqqVSrW+KV9rhM5c6xseoifi5zV53qv9L2IBEY8w9Fsn4yv6pLGLsvEIdfGOJrmG2WYB6B7c2X8/McMCSul3HXWnWTqVbK02fWzQdB04t89/1O/w1cDnyilFU=';
+$channel_secret = 'ee36357fc71a88bf26ba4bb51ed4870d';
+
+//Get message from Line API
 $content = file_get_contents('php://input');
-// Parse JSON
-$events = json_decode($content, true);
+$events=json_decode($content, true);
+
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-			// Get text sent
-			$text = $event['message']['text'];
-			// Get replyToken
-			$replyToken = $event['replyToken'];
-
-			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $text
-			];
-
-			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-
-			echo $result . "\r\n";
-		}
-	}
+			switch($event['message']['type']) {
+                case 'text':
+                    //Get replyToken
+                    $replyToken = $event['replyToken']; //Reply message
+                    if($event['message']['text']=='ubdull'){
+                        $respMessage='ถามเอาที่กุจะพอรู้นะ สัส !!!';   
+                    }else if($event['message']['text']=='CGX'){
+                        $respMessage='อย่าให้พูดถึงเลยครับ องค์กรเหี้ยๆแบบนั้น';
+                    }else if($event['message']['text']=='สกค'){
+                        $respMessage='น่าจะสาปสูญไปแล้ว';
+                    }else if($event['message']['text']=='hispeed'){
+                        $respMessage='น่าจะสาปสูญไปแล้ว';
+                    }else if($event['message']['text']=='เสือดำ'){
+                        $respMessage='เพื่อนรัก ผศ ครับ เสาร์นี้อ่างทองระเบิดแน่นวล';
+                    }else if($event['message']['text']=='ผศ'){
+                        $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
+                    }else if($event['message']['text']=='ผอ แมว'){
+                        $respMessage='อย่าให้พูดถึงเลยครับ';
+                    }else if($event['message']['text']=='ทีละคน นะ สัส'){
+                        $respMessage='เออ ใช่ กุรุ่นทดลองครับ !!!';
+                    }else if($event['message']['text']=='ไปราชการ'){
+                        $respMessage='แปลว่าไปตีหม้อ กับเสือดำ';
+                    }else if(strpos($event['message']['text'], 'สัส') !== false){
+                        $respMessage='ทำไมพูดไม่ไพเราะเลยครับ ที่บ้านไม่สั่งสอนเหรอ';
+                    }else if(strpos($event['message']['text'], 'เชี่ย') !== false){
+                        $respMessage='นาทีนี้ ผศ คนเดียวเลยฮะ ด่าแต่กรู';
+                    }else if(strpos($event['message']['text'], 'ราชการ') !== false){
+                        $respMessage='มันก็แค่ข้ออ้าง รึเปล่าวะ ?';
+                    }else if(strpos($event['message']['text'], 'แป๋งไปไหน') !== false){
+                        $respMessage='ไม่รู้ฮะ อย่าไปพูดถึงเค้าเลย';
+                    }
+                    break;
+            }
+        $httpClient=new CurlHTTPClient($channel_token); 
+        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
+        $textMessageBuilder=new TextMessageBuilder($respMessage);
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        
+    }
 }
+
 echo "OK";
