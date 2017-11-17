@@ -5,6 +5,7 @@ use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use \LINE\LINEBot;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+use \LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
 
 $channel_token = '9Isri8d/LYfcip6hCv4kmAUHR6ST8tTwUYC69hCFEb0wG7TNHEhqqVSrW+KV9rhM5c6xseoifi5zV53qv9L2IBEY8w9Fsn4yv6pLGLsvEIdfGOJrmG2WYB6B7c2X8/McMCSul3HXWnWTqVbK02fWzQdB04t89/1O/w1cDnyilFU=';
 $channel_secret = 'ee36357fc71a88bf26ba4bb51ed4870d';
@@ -42,8 +43,9 @@ if (!is_null($events['events'])) {
                 //$respMessage='Hello, your image ID is '.$messageID;
                 break;
             case 'sticker':
-                $messageID = $event['message']['packageId'];
-                $respMessage='Hello, your Sticker Package ID is '.$messageID;
+                $packageId = 1; 
+                $stickerId = 410;
+                $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
                 break;
             case 'location':
                 $address = $event['message']['address'];
