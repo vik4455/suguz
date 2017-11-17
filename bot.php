@@ -4,6 +4,7 @@ require_once('./vendor/autoload.php');
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use \LINE\LINEBot;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 
 $channel_token = '9Isri8d/LYfcip6hCv4kmAUHR6ST8tTwUYC69hCFEb0wG7TNHEhqqVSrW+KV9rhM5c6xseoifi5zV53qv9L2IBEY8w9Fsn4yv6pLGLsvEIdfGOJrmG2WYB6B7c2X8/McMCSul3HXWnWTqVbK02fWzQdB04t89/1O/w1cDnyilFU=';
 $channel_secret = 'ee36357fc71a88bf26ba4bb51ed4870d';
@@ -31,10 +32,14 @@ if (!is_null($events['events'])) {
                         break;
                     }
                 }
+                $textMessageBuilder=new TextMessageBuilder($respMessage);
                 break;
             case 'image':
-                $messageID = $event['message']['id']; 
-                $respMessage='Hello, your image ID is '.$messageID;
+                $originalContentUrl = 'https://cdn.shopify.com/s/files/1/1217/6360/products/Shinkansen_Tokaido_ShinFuji_001_1e44e709-ea47-41ac-91e4- 89b2b5eb193a_grande.jpg?v=1489641827';
+                $previewImageUrl = 'https://cdn.shopify.com/s/files/1/1217/6360/products/Shinkansen_Tokaido_ShinFuji_001_1e44e709-ea47-41ac-91e4- 89b2b5eb193a_grande.jpg?v=1489641827';
+                $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
+                //$messageID = $event['message']['id']; 
+                //$respMessage='Hello, your image ID is '.$messageID;
                 break;
             case 'sticker':
                 $messageID = $event['message']['packageId'];
@@ -68,7 +73,7 @@ if (!is_null($events['events'])) {
         
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
-        $textMessageBuilder=new TextMessageBuilder($respMessage);
+        
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
     }
 }
