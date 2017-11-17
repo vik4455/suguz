@@ -35,8 +35,8 @@ if (!is_null($events['events'])) {
                 $textMessageBuilder=new TextMessageBuilder($respMessage);
                 break;
             case 'image':
-                $originalContentUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
-                $previewImageUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
+                $originalContentUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
+                $previewImageUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
                 $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                 //$messageID = $event['message']['id']; 
                 //$respMessage='Hello, your image ID is '.$messageID;
