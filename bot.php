@@ -17,9 +17,9 @@ $events=json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+        $replyToken = $event['replyToken']; 
 		$httpClient=new CurlHTTPClient($channel_token); 
-        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
-        
+        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
         $response = $bot->getProfile('<userId>');
         if ($response->isSucceeded()) {
             $profile = $response->getJSONDecodedBody();
@@ -27,7 +27,9 @@ if (!is_null($events['events'])) {
             echo $profile['pictureUrl'];
             echo $profile['statusMessage'];
         }
+        
         $textMessageBuilder=new TextMessageBuilder("ดีจ้า".$profile['displayName']);
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
     }
 }
 
