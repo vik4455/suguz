@@ -35,8 +35,8 @@ if (!is_null($events['events'])) {
                 $textMessageBuilder=new TextMessageBuilder($respMessage);
                 break;
             case 'image':
-                $originalContentUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
-                $previewImageUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
+                $originalContentUrl = 'http://res.cloudinary.com/pin-korat-com/image/upload/v1510958030/sample.jpg';
+                $previewImageUrl = 'http://res.cloudinary.com/pin-korat-com/image/upload/v1510958030/sample.jpg';
                 $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                 //$messageID = $event['message']['id']; 
                 //$respMessage='Hello, your image ID is '.$messageID;
