@@ -44,7 +44,7 @@ if (!is_null($events['events'])) {
                 break;
             case 'sticker':
                 $packageId = 1; 
-                $stickerId = 410;
+                $stickerId = 3;
                 $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
                 break;
             case 'location':
