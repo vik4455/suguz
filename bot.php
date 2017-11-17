@@ -29,23 +29,27 @@ if (!is_null($events['events'])) {
                 $messageID = $event['message']['packageId'];
                 $respMessage='Hello, your Sticker Package ID is '.$messageID;
                 break;
-            case 'video':
-                $messageID = $event['message']['id'];
-                $fileID = $event['message']['id'];
-                $response = $bot->getMessageContent($fileID); 
-                $fileName = 'linebot.mp4'; 
-                $file=fopen($fileName, 'w');
-                fwrite($file, $response->getRawBody());
-                $respMessage='Hello, your video ID is '.$messageID;
+            case 'location':
+                $address = $event['message']['address'];
+                $respMessage='Hello, your address is '.$address;
                 break;
-            case 'audio':
-                $messageID = $event['message']['id'];
-                $fileID = $event['message']['id'];
-                $response = $bot->getMessageContent($fileID); 
-                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
-                fwrite($file, $response->getRawBody());
-                $respMessage='Hello, your audio ID is '.$messageID;
-                break;
+//            case 'video':
+//                $messageID = $event['message']['id'];
+//                $fileID = $event['message']['id'];
+//                $response = $bot->getMessageContent($fileID); 
+//                $fileName = 'linebot.mp4'; 
+//                $file=fopen($fileName, 'w');
+//                fwrite($file, $response->getRawBody());
+//                $respMessage='Hello, your video ID is '.$messageID;
+//                break;
+//            case 'audio':
+//                $messageID = $event['message']['id'];
+//                $fileID = $event['message']['id'];
+//                $response = $bot->getMessageContent($fileID); 
+//                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
+//                fwrite($file, $response->getRawBody());
+//                $respMessage='Hello, your audio ID is '.$messageID;
+//                break;
             default:
                 $respMessage='What is you sent ?'; 
                 break;
