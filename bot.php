@@ -28,7 +28,7 @@ if (!is_null($events['events'])) {
             echo $profile['statusMessage'];
         }
         
-        $textMessageBuilder=new TextMessageBuilder($profile);
+        $textMessageBuilder=new TextMessageBuilder('<userId>');
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
     }
 }
