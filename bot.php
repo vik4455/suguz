@@ -26,6 +26,8 @@ if (!is_null($events['events'])) {
             $disp =  $profile['displayName'];
             $pic = $profile['pictureUrl'];
             $textMessageBuilder=new TextMessageBuilder($disp);
+        }else{
+            $textMessageBuilder=new TextMessageBuilder('ไม่ได้');
         }
         
         
