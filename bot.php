@@ -35,8 +35,8 @@ if (!is_null($events['events'])) {
                 $textMessageBuilder=new TextMessageBuilder($respMessage);
                 break;
             case 'image':
-                $originalContentUrl = 'https://cdn.shopify.com/s/files/1/1217/6360/products/Shinkansen_Tokaido_ShinFuji_001_1e44e709-ea47-41ac-91e4- 89b2b5eb193a_grande.jpg?v=1489641827';
-                $previewImageUrl = 'https://cdn.shopify.com/s/files/1/1217/6360/products/Shinkansen_Tokaido_ShinFuji_001_1e44e709-ea47-41ac-91e4- 89b2b5eb193a_grande.jpg?v=1489641827';
+                $originalContentUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
+                $previewImageUrl = 'https://github.com/vik4455/suguz/blob/master/images/smiley.jpg';
                 $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                 //$messageID = $event['message']['id']; 
                 //$respMessage='Hello, your image ID is '.$messageID;
