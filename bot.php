@@ -29,7 +29,7 @@ if (!is_null($events['events'])) {
         
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
-        $textMessageBuilder=newTextMessageBuilder($respMessage);
+        $textMessageBuilder=new TextMessageBuilder($respMessage);
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
     }
 }
