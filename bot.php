@@ -23,10 +23,9 @@ if (!is_null($events['events'])) {
         $response = $bot->getProfile('<userId>');
         if ($response->isSucceeded()) {
             $profile = $response->getJSONDecodedBody();
-            echo $profile['displayName'];
-            echo $profile['pictureUrl'];
-            echo $profile['statusMessage'];
-            $textMessageBuilder=new TextMessageBuilder($profile['displayName']);
+            $disp =  $profile['displayName'];
+            $pic = $profile['pictureUrl'];
+            $textMessageBuilder=new TextMessageBuilder($disp);
         }
         
         
