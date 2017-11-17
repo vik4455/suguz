@@ -18,8 +18,19 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
         $replyToken = $event['replyToken']; 
 		switch($event['message']['type']) {
-            case 'text': 
-                $respMessage='Hello, your message is '.$event['message']['text'];
+            case 'text': {
+                    switch(strtolower($event['message']['text'])) { 
+                        case 'm':
+                            $respMessage='What sup man.Go away!';
+                            break; 
+                        case 'f':
+                            $respMessage='Love you lady.';
+                            break; 
+                        default:
+                            $respMessage='What is your sex? M or F'; 
+                        break;
+                    }
+                }
                 break;
             case 'image':
                 $messageID = $event['message']['id']; 
@@ -42,14 +53,14 @@ if (!is_null($events['events'])) {
 //                fwrite($file, $response->getRawBody());
 //                $respMessage='Hello, your video ID is '.$messageID;
 //                break;
-            case 'audio':
-                $messageID = $event['message']['id'];
-                $fileID = $event['message']['id'];
-                $response = $bot->getMessageContent($fileID); 
-                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
-                fwrite($file, $response->getRawBody());
-                $respMessage='Hello, your audio ID is '.$messageID;
-                break;
+//            case 'audio':
+//                $messageID = $event['message']['id'];
+//                $fileID = $event['message']['id'];
+//                $response = $bot->getMessageContent($fileID); 
+//                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
+//                fwrite($file, $response->getRawBody());
+//                $respMessage='Hello, your audio ID is '.$messageID;
+//                break;
             default:
                 $respMessage='What is you sent ?'; 
                 break;
