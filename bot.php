@@ -27,24 +27,8 @@ if (!is_null($events['events'])) {
             }else if(strpos($event['message']['text'], 'กาก') !== false){
                 $respMessage = "คุณสิครับ กาก !!!"; 
             }else if($event['message']['text']=="ผลโพล"){
-                try{
-                $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
-                $dbname = 'd57b0s2qa541bq'; 
-                $user = 'gfqphhprpuzrre';
-                $pass = 'e1c9b3a5cf6a2d33f100944a04ac4b99b53ce0036341b51a0a9988a6e2d527a2';
-                $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-                
-                $sql=sprintf("SELECT COUNT(answer) as ans FROM poll GROUP BY answer");
-                $result = $connection->query($sql);
-                error_log($sql);
-                $respMessage = '';
-                while ($row = pg_fetch_assoc($result)) {
-                    $respMessage .= $row['ans'].'\n';
-                }
-                }catch(Exception $e){ 
-                error_log($e->getMessage());
-                } 
-                }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
+                $respMessage = "ผลโพล"; 
+            }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
