@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
-                            $respMessage='จํานวนคนตอบว่า เพื่อน ='.$amount;
+                            $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo';
                             break;
                         case '2':
                             // Insert
@@ -61,47 +61,17 @@ if (!is_null($events['events'])) {
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
-                            $respMessage='จํานวนคนตอบว่า แฟน ='.$amount;
+                            $respMessage='จํานวนคนตอบว่า ไม่แพ้ ='.$amount.' อิอิ';
                             break;
-                        case '3':
-                            // Insert
-                            $params = array('userID'=> $event['source']['userId'], 'answer'=> '3',);
-                            $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
-                            $statement->execute($params);
-                            // Query
-                            $sql=sprintf("SELECT * FROM poll WHERE answer='3' AND user_id='%s'",$event['source']['userId']);
-                            $result = $connection->query($sql);
-                            $amount = 1;
-                            if($result){
-                                $amount = $result->rowCount(); 
-                            }
-                            $respMessage='จํานวนคนตอบว่า พ่อแม่ ='.$amount;
-                            break;
-                        case '4':
-                            // Insert
-                            $params = array('userID'=> $event['source']['userId'], 'answer'=> '4',);
-                            $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
-                            $statement->execute($params);
-                            // Query
-                            $sql=sprintf("SELECT * FROM poll WHERE answer='4' AND user_id='%s'",$event['source']['userId']);
-                            $result = $connection->query($sql);
-                            $amount = 1;
-                            if($result){
-                                $amount = $result->rowCount(); 
-                            }
-                            $respMessage='จํานวนคนตอบว่า บุคคลอื่นๆ ='.$amount;
-                            break;
-                        default:
+                        case 'คำถาม':
                             $respMessage = "
-                            คนที่เราโทรหาบ่อยที่สุดคือ \n\r 
-                            กด1 เพื่อน\n\r
-                            กด2 แฟน\n\r
-                            กด3 พ่อแม่\n\r
-                            กด4 บุคคลอื่นๆ\n\r ";
+                            วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ 
+                            กด1 แพ้\n\r
+                            กด2 ไม่แพ้\n\r";
                             break;                      
                     }  
                 }else {
-                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว';
+                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
                 }
             }catch(Exception $e){ 
                 error_log($e->getMessage());
