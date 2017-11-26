@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
                 if($result==false || $result->rowCount()<=0){
                     if($event['message']['text']=="1"){
                         $respMessage = 'ตอบ 1';
-                    }else($event['message']['text']=="2"){
+                    }else if($event['message']['text']=="2"){
                         $respMessage = 'ตอบ 2';
                     }
                 }else{
