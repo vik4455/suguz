@@ -26,7 +26,29 @@ if (!is_null($events['events'])) {
                 $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
             }else if(strpos($event['message']['text'], 'กาก') !== false){
                 $respMessage = "คุณสิครับ กาก !!!"; 
-            }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
+            }else if($event['message']['text']=="ผลโพล"){
+                try{
+                $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
+                $dbname = 'd57b0s2qa541bq'; 
+                $user = 'gfqphhprpuzrre';
+                $pass = 'e1c9b3a5cf6a2d33f100944a04ac4b99b53ce0036341b51a0a9988a6e2d527a2';
+                $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+                
+                $sql=sprintf("SELECT COUNT(answer) as ans FROM poll GROUP BY answer");
+                $result = $connection->query($sql);
+                error_log($sql);
+                $respMessage = '';
+                while ($row = pg_fetch_assoc($result)) {
+                    $respMessage .= $row['ans'].'\n';
+                }
+                
+                }else{
+                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ครับ โปรดอย่ากดอีก';
+                }
+                }catch(Exception $e){ 
+                error_log($e->getMessage());
+                } 
+                }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
@@ -44,9 +66,9 @@ if (!is_null($events['events'])) {
                             $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
                             $statement->execute($params);
                             // Query
-                            $sql=sprintf("SELECT * FROM poll WHERE answer='1' AND user_id='%s'",$event['source']['userId']);
+                            $sql=sprintf("SELECT * FROM poll WHERE answer='1'");
                             $result = $connection->query($sql);
-                            $amount = 1;
+                            
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
@@ -56,9 +78,9 @@ if (!is_null($events['events'])) {
                             $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
                             $statement->execute($params);
                             // Query
-                            $sql=sprintf("SELECT * FROM poll WHERE answer='1' AND user_id='%s'",$event['source']['userId']);
+                            $sql=sprintf("SELECT * FROM poll WHERE answer='2'");
                             $result = $connection->query($sql);
-                            $amount = 1;
+                            
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
