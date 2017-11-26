@@ -63,6 +63,12 @@ if (!is_null($events['events'])) {
                             }
                             $respMessage='จํานวนคนตอบว่า ไม่แพ้ ='.$amount.' อิอิ';
                             break;
+                        case 'แป๋ง':
+                            $respMessage='อย่าพูดถึงมัน กุขอร้อง';
+                            break;
+                        case 'ผอ แมว':
+                            $respMessage='บอกเลย แม่ม หื่น';
+                            break;
                         case 'คำถาม':
                             $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";
                             break;                      
