@@ -63,10 +63,9 @@ if (!is_null($events['events'])) {
                                 }
                                 $respMessage='จํานวนคนตอบว่า ไม่แพ้ ='.$amount.' อิอิ';   
                         }
+                    }else{
+                        $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
                     }
-                }else{
-                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
-                }
                 }catch(Exception $e){ 
                 error_log($e->getMessage());
                 } 
