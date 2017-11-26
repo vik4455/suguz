@@ -41,9 +41,12 @@ if (!is_null($events['events'])) {
                 }else{
                     $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
                 }
-        }
+                }catch(Exception $e){ 
+                error_log($e->getMessage());
+                } 
+            }
             
-    }
+        }
         
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
