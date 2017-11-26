@@ -41,10 +41,6 @@ if (!is_null($events['events'])) {
                 while ($row = pg_fetch_assoc($result)) {
                     $respMessage .= $row['ans'].'\n';
                 }
-                
-                }else{
-                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ครับ โปรดอย่ากดอีก';
-                }
                 }catch(Exception $e){ 
                 error_log($e->getMessage());
                 } 
