@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
             //Check exist answer user
             if($event['message']['text']=="คำถาม"){
                 $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
-            }else if(($event['message']['text']=="1")or($event['message']['text']=="2")){
+            }else{
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
