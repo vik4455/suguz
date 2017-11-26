@@ -29,7 +29,8 @@ if (!is_null($events['events'])) {
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
                 $user = 'gfqphhprpuzrre';
-                $pass = 'e1c9b3a5cf6a2d33f100944a04ac4b99b53ce0036341b51a0a9988a6e2d527a2'; $connection=newPDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+                $pass = 'e1c9b3a5cf6a2d33f100944a04ac4b99b53ce0036341b51a0a9988a6e2d527a2'; 
+                $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
                 $params = array('time'=> $appointments[0], 'content'=> $appointments[1],);
                 
                 $statement=$connection->prepare("INSERT INTO appointments (time, content)VALUES(:time,:content)");
