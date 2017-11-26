@@ -37,7 +37,11 @@ if (!is_null($events['events'])) {
                 error_log($sql);
                 
                 if($result==false || $result->rowCount()<=0){
-                    $respMessage = 'สวัสดีครับคุณ';
+                    if($event['message']['text']=="1"){
+                        $respMessage = 'ตอบ 1';
+                    }else($event['message']['text']=="2"){
+                        $respMessage = 'ตอบ 2';
+                    }
                 }else{
                     $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
                 }
