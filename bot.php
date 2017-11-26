@@ -103,6 +103,8 @@ if (!is_null($events['events'])) {
                 }else {
                     $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว';
                 }
+            }catch(Exception $e){ 
+                error_log($e->getMessage());
             }
         }
         $httpClient = new CurlHTTPClient($channel_token);
@@ -110,8 +112,6 @@ if (!is_null($events['events'])) {
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
-    }catch(Exception $e){ 
-        error_log($e->getMessage());
     }
 }
 
