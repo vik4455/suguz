@@ -38,7 +38,17 @@ if (!is_null($events['events'])) {
                 
                 if($result==false || $result->rowCount()<=0){
                     if($event['message']['text']=="1"){
-                        $respMessage = 'ตอบ 1';
+                            $params = array('userID'=> $event['source']['userId'], 'answer'=> '1',);
+                            $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
+                            $statement->execute($params);
+                            // Query
+                            $sql=sprintf("SELECT * FROM poll WHERE answer='1' AND user_id='%s'",$event['source']['userId']);
+                            $result = $connection->query($sql);
+                            $amount = 1;
+                            if($result){
+                                $amount = $result->rowCount(); 
+                            }
+                            $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo';
                     }else if($event['message']['text']=="2"){
                         $respMessage = 'ตอบ 2';
                     }
