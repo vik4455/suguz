@@ -37,7 +37,7 @@ if (!is_null($events['events'])) {
                 if($result){
                     $amount = $result->rowCount(); 
                 }
-                $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo'; 
+                $respMessage='จํานวนคนตอบว่า แพ้ = '.$amount.' พวก olo'; 
             }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
