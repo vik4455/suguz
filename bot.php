@@ -50,10 +50,20 @@ if (!is_null($events['events'])) {
                             }
                             $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo';
                     }else if($event['message']['text']=="2"){
-                        $respMessage = 'ตอบ 2';
+                            $params = array('userID'=> $event['source']['userId'], 'answer'=> '2',);
+                            $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
+                            $statement->execute($params);
+                            // Query
+                            $sql=sprintf("SELECT * FROM poll WHERE answer='1' AND user_id='%s'",$event['source']['userId']);
+                            $result = $connection->query($sql);
+                            $amount = 1;
+                            if($result){
+                                $amount = $result->rowCount(); 
+                            }
+                            $respMessage='จํานวนคนตอบว่า ชนะ ='.$amount.' อิอิ';
                     }
                 }else{
-                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
+                    $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ครับ โปรดอย่ากดอีก';
                 }
                 }catch(Exception $e){ 
                 error_log($e->getMessage());
