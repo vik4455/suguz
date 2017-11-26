@@ -110,7 +110,7 @@ if (!is_null($events['events'])) {
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
-    }catch(Exception$e){ 
+    }catch(Exception $e){ 
         error_log($e->getMessage());
     }
 }
