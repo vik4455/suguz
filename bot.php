@@ -26,8 +26,18 @@ if (!is_null($events['events'])) {
                 $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
             }else if(strpos($event['message']['text'], 'กาก') !== false){
                 $respMessage = "คุณสิครับ กาก !!!"; 
-            }else if($event['message']['text']=="ผลโพล"){
-                $respMessage = "ผลโพล"; 
+            }else if($event['message']['text']=="แพ้"){
+                $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
+                $dbname = 'd57b0s2qa541bq'; 
+                $user = 'gfqphhprpuzrre';
+                $pass = 'e1c9b3a5cf6a2d33f100944a04ac4b99b53ce0036341b51a0a9988a6e2d527a2';
+                $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+                $sql=sprintf("SELECT * FROM poll WHERE answer='1'");
+                $result = $connection->query($sql);
+                if($result){
+                    $amount = $result->rowCount(); 
+                }
+                $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo'; 
             }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
