@@ -22,7 +22,10 @@ if (!is_null($events['events'])) {
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
             //Check exist answer user
-            try{
+            if($event['message']['text']=="คำถาม"){
+                $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
+            }else if(($event['message']['text']=="1")||($event['message']['text']=="2")){
+                try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
                 $user = 'gfqphhprpuzrre';
@@ -34,7 +37,7 @@ if (!is_null($events['events'])) {
                 error_log($sql);
                 
                 if($result==false || $result->rowCount()<=0){
-                    switch($event['message']['text']) {
+                        switch(['message']['text']) {
                         case '1':
                             // Insert
                             $params = array('userID'=> $event['source']['userId'], 'answer'=> '1',);
@@ -62,23 +65,16 @@ if (!is_null($events['events'])) {
                                 $amount = $result->rowCount(); 
                             }
                             $respMessage='จํานวนคนตอบว่า ไม่แพ้ ='.$amount.' อิอิ';
-                            break;
-                        case 'แป๋ง':
-                            $respMessage='อย่าพูดถึงมัน กุขอร้อง';
-                            break;
-                        case 'ผอ แมว':
-                            $respMessage='บอกเลย แม่ม หื่น';
-                            break;
-                        case 'คำถาม':
-                            $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";
-                            break;                      
-                    }  
+                            break;                    
+                        }    
                 }else {
                     $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ไอ้สัส';
                 }
             }catch(Exception $e){ 
                 error_log($e->getMessage());
-            }
+            }    
+        }
+            
         }
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
