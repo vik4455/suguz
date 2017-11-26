@@ -24,6 +24,8 @@ if (!is_null($events['events'])) {
             //Check exist answer user
             if($event['message']['text']=="คำถาม"){
                 $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
+            }else if(strpos($event['message']['text'], 'กาก') !== false){
+                $respMessage = "คุณสิครับ กาก !!!"; 
             }else if($event['message']['text']=="1" || $event['message']['text']=="2"){
                 try{
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
