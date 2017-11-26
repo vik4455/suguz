@@ -74,7 +74,7 @@ if (!is_null($events['events'])) {
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
-                            $respMessage='จํานวนคนตอบว่า แพ้ ='.$amount.' olo';
+                            $respMessage='พวก olo มี = '.$amount.' ตัว';
                     }else if($event['message']['text']=="2"){
                             $params = array('userID'=> $event['source']['userId'], 'answer'=> '2',);
                             $statement=$connection->prepare('INSERT INTO poll (user_id,answer)VALUES(:userID, :answer)');
@@ -86,7 +86,7 @@ if (!is_null($events['events'])) {
                             if($result){
                                 $amount = $result->rowCount(); 
                             }
-                            $respMessage='จํานวนคนตอบว่า ชนะ ='.$amount.' อิอิ';
+                            $respMessage='มนุษย์สุดประเสริฐ มี = '.$amount.' คน';
                     }
                 }else{
                     $respMessage = 'คุณได้ตอบโพลล์นี้แล้ว ครับ โปรดอย่ากดอีก';
