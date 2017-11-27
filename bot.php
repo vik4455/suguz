@@ -25,7 +25,15 @@ if (!is_null($events['events'])) {
             if($event['message']['text']=="คำถาม"){
                 $respMessage = "วันนี้ท๊อฟฟี่จะแพ้อีกรึไม่ กด1 แพ้\n กด2 ไม่แพ้\n";    
             }else if(strpos($event['message']['text'], 'กาก') !== false){
-                $respMessage = "คุณสิครับ กาก !!!"; 
+                $respMessage = "มึง สิ กาก !!!"; 
+            }else if(strpos($event['message']['text'], 'ควย') !== false){
+                $respMessage = "หยาบคาย สัสๆ!!!"; 
+            }else if(strpos($event['message']['text'], 'สัส') !== false){
+                $respMessage = "หยาบคาย สัสๆ!!!"; 
+            }else if(strpos($event['message']['text'], 'เหี้ย') !== false){
+                $respMessage = "หยาบคาย สัสๆ!!!"; 
+            }else if(strpos($event['message']['text'], 'เชี่ย') !== false){
+                $respMessage = "หยาบคาย สัสๆ!!!"; 
             }else if(strpos($event['message']['text'], 'แป๋ง') !== false){
                 $respMessage = "ห๊ะ ใครพูดถึงพี่แป๋ง สุดหล่อ !!!"; 
             }else if($event['message']['text']=="ตอบว่าแพ้"){
