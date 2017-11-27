@@ -38,6 +38,10 @@ if (!is_null($events['events'])) {
                 $respMessage = "ห๊ะ ใครพูดถึงพี่แป๋ง สุดหล่อ !!!"; 
             }else if(strpos($event['message']['text'], 'ผอ แมว') !== false){
                 $respMessage = "ได้ข่าว พี่ ผอ แมว เค้าหื่นน่าดูเลยนะ!!!"; 
+            }else if(strpos($event['message']['text'], 'เสือดำ') !== false){
+                $respMessage = "ได้ข่าว พี่ เสือดำ ไปกับ ผอ แมว เค้าหื่นเหมือนกันนะคะ!!!"; 
+            }else if(strpos($event['message']['text'], 'ผศ') !== false){
+                $respMessage = "ได้ข่าว พี่ ผศ ไปกับ เสือดำ และ ผอ แมว เค้าชอบไปอ่างนะคะ!!!"; 
             }else if($event['message']['text']=="ตอบว่าแพ้"){
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
