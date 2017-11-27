@@ -36,6 +36,8 @@ if (!is_null($events['events'])) {
                 $respMessage = "หยาบคาย สัสๆ!!!"; 
             }else if(strpos($event['message']['text'], 'แป๋ง') !== false){
                 $respMessage = "ห๊ะ ใครพูดถึงพี่แป๋ง สุดหล่อ !!!"; 
+            }else if(strpos($event['message']['text'], 'ผอ แมว') !== false){
+                $respMessage = "ได้ข่าว พี่ ผอ แมว เค้าหื่นน่าดูเลยนะ!!!"; 
             }else if($event['message']['text']=="ตอบว่าแพ้"){
                 $host = 'ec2-54-235-65-224.compute-1.amazonaws.com';
                 $dbname = 'd57b0s2qa541bq'; 
